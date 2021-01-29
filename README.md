@@ -31,7 +31,7 @@ The listing screen should show a table of the small businesses you selected. Ple
 * description
 * address
 * operating hours
-* 
+  
 It is not a requirement that this table is paginated. You may do so if you like if you intend to add numerous businesses and you think it will degrade the user experience.
 
 ## Details Screen - Example 2
@@ -65,7 +65,7 @@ You will probably want at least three properties in your Redux state:
 * user
 * listings
 * map
-* 
+  
 NOTE: You do not have to name these the same way.
 
 ## Redux Actions
