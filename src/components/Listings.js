@@ -20,7 +20,7 @@ export const Listings = (props) => {
                     {props.listings.map((listing) => (
                         <TableRow key={listing.id}>
                             <TableCell component="th" scope="row">
-                                <Link style={{ textDecoration: "underline"}} to ={`/details/${listing.id}`}>{listing.name}</Link>
+                                <Link style={{ textDecoration: "underline"}} to={`/details/${listing.id}`}>{listing.name}</Link>
                             </TableCell>
                             <TableCell>{listing.description}</TableCell>
                             <TableCell>{listing.hours}</TableCell>
