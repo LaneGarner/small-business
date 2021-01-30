@@ -1,6 +1,5 @@
 export default {
-    user: "Default user",
-    map: "",
+    user: "",
     listings: [
         {
             id: 1,

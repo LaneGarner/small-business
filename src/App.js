@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigation } from './components/Navigation'
+import Navigation from './containers/Navigation'
 import Router from './Router'
 import './App.css'
 import { BrowserRouter } from 'react-router-dom'
@@ -8,7 +8,6 @@ import store from './redux/store'
 
 const App = () => {
   return (
-    // <Provider store={store}>
     <Provider store={store}>
       <BrowserRouter>
         <Navigation />

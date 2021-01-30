@@ -5,18 +5,29 @@ import { Link } from 'react-router-dom'
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 
+
 const theme = createMuiTheme({
     palette: {
         primary: {main: '#3BB371'},
     },
 });
 
-export const Navigation = () => {
+export const Navigation = (props) => {
+
+    const logout = () => {
+        console.log('logout')
+        document.cookie = "loggedIn=false"
+
+        props.logIn("")
+        window.location.replace("/login");
+    }
+    
+
     return (
         <ThemeProvider theme={theme}>
-        <AppBar position="relative">
+        <AppBar position="sticky">
             <Toolbar>
-                <IconButton style={{ color: 'white'}}>
+                <IconButton onClick={()=> window.location.replace("/")} style={{ color: 'white'}}>
                     <LocalPizzaIcon />
                 </IconButton>
                 <Typography variant="h6" style={{ color: 'white', flexGrow: "1" }}>
@@ -26,12 +37,27 @@ export const Navigation = () => {
                     <li className="nav-list-item">
                         <Link to="/">Listings</Link>
                     </li>
-                    <li className="nav-list-item">
+                    {document.cookie === "loggedIn=true" && (
+                        <li className="nav-list-item">
+                            <Link to="/add">Add</Link>
+                        </li>
+                    )}
+                        <li className="nav-list-item">
+                    {document.cookie === "loggedIn=true" ? (
+                        <div onClick={logout} style={{cursor: "pointer"}}>Log out</div>
+                    ) : (
                         <Link to="/login">Login</Link>
+                    )
+                }
                     </li>
                 </ul>
             </Toolbar>
         </AppBar>
+        {document.cookie === "loggedIn=true" ?
+        <div style ={{background:"#D3D3D3", color:"#777", paddingTop:".3em", paddingBottom:".3em", paddingLeft:"2em"}}>Logged in as: {props.user}</div> :
+        <div></div>
+        
+        }
         </ThemeProvider>
     )
 }

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Container, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core'
 import { Link } from 'react-router-dom'
+import DeleteIcon from '@material-ui/icons/Delete';
 
 export const Listings = (props) => {
+
     return (
         <Container maxWidth="lg" className="car-container">
-            {/* <h4>Welcome, {props.user.username}</h4> */}
-            {/* <h1>Vegan pizza</h1> */}
             <Table>
                 <TableHead>
                     <TableRow>
@@ -14,17 +14,28 @@ export const Listings = (props) => {
                         <TableCell>Description</TableCell>
                         <TableCell>Hours</TableCell>
                         <TableCell>Address</TableCell>
+                        {document.cookie === "loggedIn=true" &&
+                        <TableCell>Delete</TableCell>}
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.listings.map((listing) => (
-                        <TableRow key={listing.id}>
+                    {props.listings.map((listing, idx) => (
+                        <TableRow key={idx}>
                             <TableCell component="th" scope="row">
                                 <Link style={{ textDecoration: "underline"}} to={`/details/${listing.id}`}>{listing.name}</Link>
                             </TableCell>
                             <TableCell>{listing.description}</TableCell>
                             <TableCell>{listing.hours}</TableCell>
                             <TableCell>{listing.address}</TableCell>
+                            {document.cookie === "loggedIn=true" && (
+                                <TableCell>
+                                    <DeleteIcon 
+                                        style={{ color: "tomato", cursor: "pointer"}} 
+                                        onClick={()=>props.removeListing(idx)}
+                                    />
+                                </TableCell>
+                            )
+                            }
                         </TableRow>
                     ))}
                 </TableBody>

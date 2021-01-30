@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
-import {
-TextField,
-Button,
-Container
-} from '@material-ui/core'
+import { TextField, Button, Container } from '@material-ui/core'
 
-class App extends Component {
+class Login extends Component {
 state = {
     username: '',
     password: ''
@@ -24,38 +20,40 @@ login = (e) => {
     document.cookie = "loggedIn=true;max-age=60*1000"
     // set loggedIn = true and max-age = 60*1000 (one minute)
 
-    window.location.replace("/")
+    this.props.logIn(this.state.username)
+    this.props.history.push("/");
+    // window.location.replace("/")
 }
 
 render() {
     return (
-    <div className="App">
         <Container maxWidth="sm">
         <form className="login-form" onSubmit={this.login}>
             <TextField
-            required
-            onChange={this.handleTextChange}
-            value={this.state.username}
-            name="username"
-            label="Username"
-            type="text" />
+                required
+                onChange={this.handleTextChange}
+                value={this.state.username}
+                name="username"
+                label="Username"
+                type="text" />
             <TextField
-            required
-            onChange={this.handleTextChange}
-            value={this.state.password}
-            name="password"
-            label="Password"
-            type="password" />
+                required
+                onChange={this.handleTextChange}
+                value={this.state.password}
+                name="password"
+                label="Password"
+                type="password" />
             <Button
-            type="submit"
-            className="login-button"
-            variant="contained"
-            color="primary">Login</Button>
+                type="submit"
+                className="login-button"
+                variant="contained"
+                >
+                Login
+            </Button>
         </form>
         </Container>
-    </div>
     );
 }
 }
 
-export default App;
+export default Login;

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { Details } from '../components/Details'
+import { Map } from '../components/Map'
 // import { removeCar } from '../redux/actions'
 
 const mapStateToProps = (state) => {
@@ -17,4 +17,4 @@ const mapStateToProps = (state) => {
 //     }
 // }
 
-export default connect(mapStateToProps, null)(Details)
+export default connect(mapStateToProps, null)(Map)
